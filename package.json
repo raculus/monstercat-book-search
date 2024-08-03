@@ -1,0 +1,17 @@
+{
+  "name": "honeytoon-book-search",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Han Jae Hyuk",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "pm2": "^5.3.0",
+    "xlsx": "^0.18.5"
+  }
+}

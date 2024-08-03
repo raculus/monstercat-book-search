@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css">    
+    <link rel="stylesheet" type="text/css" href="./css/modern-input.css">    
+    <link rel="stylesheet" type="text/css" href="./css/dropdown.css">    
+    <script src="https://kit.fontawesome.com/b73678c91c.js" crossorigin="anonymous"></script>
+    <title>몬스터캣 도서검색</title>
+  </head>
+  <body>
+    
+    <header class="center">
+      <h1>몬스터캣 도서검색</h1>
+      <!--<a id="manageBtn" href="/manage" target="_blank"><i class="fa-solid fa-wrench fa-2x"></i></a>-->
+    </header>
+    <div class="center">
+      <table>
+        <tr>
+          <td width="90%">
+            <div class="search-container">
+              <div class="form__group field">
+                <input type="input" class="form__field" placeholder="Name" id='searchInput' required />
+                <label for="name" class="form__label">도서명 검색</label>
+              </div>
+            </div>
+          </td>
+          <!-- <td>
+            <div class="dropdown">
+              <button class="dropbtn" id="dropbtn-genre">장르: 전체</button>
+              <div class="dropdown-content">
+                <a href="#" class="genre-item" data-code="전체">전체</a>
+                <%# for(var i = 0; i < bookList.length-1; i++){ %>
+                <%# const 이름 = bookList[i].w %>
+                <a href="#" class="genre-item" data-code="<%#= 이름 %>"><%#= 이름 %></a>
+                <%# } %>
+              </div>
+            </div>
+          </td> -->
+          <td>
+            <div class="dropdown">
+              <button class="dropbtn" id="dropbtn-bookcase">책장: 전체</button>
+              <div class="dropdown-content">
+                <a href="#" class="bookcase-item" data-code="전체">전체</a>
+                <% for(var i = bookcaseNums.length-1; i >= 0; i--){ %>
+                  <% const bookcaseNum = bookcaseNums[i] %>
+                <a href="#" class="bookcase-item" data-code="<%= bookcaseNum %>"><%= bookcaseNum %></a>
+                <% } %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+  
+        </tr>
+      </table>
+      <table>
+        <thead>
+          <tr>            
+            <!-- <th>장르</th> -->
+            <th>책장번호</th>
+            <th>칸번호</th>
+            <th>제목</th>
+            <th>최종권수</th>
+            <!-- <th>가격</th> -->
+            <!-- <th>완결여부</th> -->
+            <!-- <th>칸번호</th> -->
+            <!-- <th>비고1</th> -->
+            <!-- <th>비고2</th> -->
+          </tr>
+        </thead>
+        <tbody id="bookList">
+          <% for(var i = bookList.length-1; i >= 0; i--){ %>
+          <tr>
+            <!-- 장르 -->
+            <% const 장르 = bookList[i].장르 %>
+            <!-- <td class="genre-name"><#%= 장르 %></td> -->
+            <% const bookcaseNum = parseInt(bookList[i].책장번호, 10) %>
+            <td class="bookcase-num text-center"><%= bookcaseNum %></td>
+            <td><%= bookList[i].칸번호 %></td>
+            <td><%= bookList[i].제목 %></td>
+            <td class="text-center"><%= bookList[i].권수 %> <%= bookList[i].완결여부%></td>
+            <!-- <td><%# = bookList[i].가격 %></td> -->
+            <!-- <td><%# = bookList[i].완결여부 %></td> -->
+            <!-- <td><%# = bookList[i].칸번호 %></td> -->
+            <!-- <td><%# = bookList[i].비고1 %></td> -->
+            <!-- <td><%# = bookList[i].비고2 %></td> -->
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <script src="./script/script.js"></script>
+  </body>
+</html>
