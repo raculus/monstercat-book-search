@@ -43,8 +43,10 @@
               <button class="dropbtn" id="dropbtn-bookcase">책장: 전체</button>
               <div class="dropdown-content">
                 <a href="#" class="bookcase-item" data-code="전체">전체</a>
-                <% for(var i = bookcaseNums.length-1; i >= 0; i--){ %>
-                  <% const bookcaseNum = bookcaseNums[i] %>
+                <%
+                for(var i = 0; i < bookcaseNums.length; i++){
+                  const bookcaseNum = bookcaseNums[i]
+                %>
                 <a href="#" class="bookcase-item" data-code="<%= bookcaseNum %>"><%= bookcaseNum %></a>
                 <% } %>
               </div>
@@ -73,14 +75,11 @@
         <tbody id="bookList">
           <% for(var i = bookList.length-1; i >= 0; i--){ %>
           <tr>
-            <!-- 장르 -->
-            <% const 장르 = bookList[i].장르 %>
-            <!-- <td class="genre-name"><#%= 장르 %></td> -->
-            <% const bookcaseNum = parseInt(bookList[i].책장번호, 10) %>
-            <td class="bookcase-num text-center"><%= bookcaseNum %></td>
-            <td><%= bookList[i].칸번호 %></td>
-            <td><%= bookList[i].제목 %></td>
-            <td class="text-center"><%= bookList[i].권수 %> <%= bookList[i].완결여부%></td>
+            <!-- <td class="genre-name"><#%= genre %></td> -->
+            <td class="bookcase-num text-center"><%= bookList[i].bookcaseNum %></td>
+            <td><%= isNaN(parseInt(bookList[i].columnNum, 10)) ? '' : parseInt(bookList[i].columnNum, 10) %></td>
+            <td><%= bookList[i].title %></td>
+            <td class="text-center"><%= bookList[i].volume %> <%= bookList[i].isComplete %></td>
             <!-- <td><%# = bookList[i].가격 %></td> -->
             <!-- <td><%# = bookList[i].완결여부 %></td> -->
             <!-- <td><%# = bookList[i].칸번호 %></td> -->

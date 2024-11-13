@@ -1,4 +1,4 @@
-const xlsxParser = require("./xlsx-parser");
+const sheetParser = require("./sheet-parser");
 const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
@@ -7,21 +7,20 @@ const port = 3001;
 app.use(express.static("views"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
+  app.get("/", async (req, res) => {
+    const bookList = await sheetParser.get_book_list();
+    const bookcaseNums = sheetParser.get_bookcase_nums(bookList);
 
-app.get("/", (req, res) => {
-  const bookList = xlsxParser.getBookList();
-  const bookcaseNums = xlsxParser.getBookcaseNums(bookList);
-
-  res.render("index", {
-    bookList: bookList,
-    bookcaseNums: bookcaseNums,
+    res.render("index", {
+      bookList: bookList,
+      bookcaseNums: bookcaseNums,
+    });
   });
-});
-
+/*
 function managePage(req, res) {
-  const bookList = xlsxParser.getBookList();
-  const bookcaseNums = xlsxParser.getBookcaseNums(bookList);
-  const manage = xlsxParser.getManage();
+  const bookList = sheetParser.getBookList();
+  const bookcaseNums = sheetParser.getBookcaseNums(bookList);
+  const manage = sheetParser.getManage();
 
   res.render("manage", {
     sheetNames: sheetNames,
@@ -36,7 +35,7 @@ app.get("/manage", function (req, res) {
 });
 
 app.post("/manage", function (req, res) {
-  const manage = xlsxParser.getManage()[0];
+  const manage = sheetParser.getManage()[0];
   const input = req.body.password;
   if (input !== manage.PW) {
     res.render("check-password", { isFail: true });
@@ -51,11 +50,12 @@ app.get("/map", (req, res) => {
     num: num,
   });
 });
-
 app.get("/reload", (req, res) => {
-  xlsxParser.reloadXlsx();
+  sheetParser.reloadXlsx();
   res.redirect("/");
 });
+
+*/
 
 app.listen(port, () => {
   console.log(`Starting server : http://localhost:${port}`);
