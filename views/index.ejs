@@ -64,7 +64,7 @@
             <th>책장번호</th>
             <th>칸번호</th>
             <th>제목</th>
-            <th>최종권수</th>
+            <th>권수</th>
             <!-- <th>가격</th> -->
             <!-- <th>완결여부</th> -->
             <!-- <th>칸번호</th> -->
@@ -73,7 +73,7 @@
           </tr>
         </thead>
         <tbody id="bookList">
-          <% for(var i = bookList.length-1; i >= 0; i--){ %>
+          <% for(var i = 1; i < bookList.length; i++){ %>
           <tr>
             <!-- <td class="genre-name"><#%= genre %></td> -->
             <td class="bookcase-num text-center"><%= bookList[i].bookcaseNum %></td>

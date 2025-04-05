@@ -29,15 +29,17 @@ async function get_book_list(){
       note
     };
   });
-  return sortBooks(books);
+  // books.shift();
+  return books;
+  // return sortBooks(books);
 }
 
-function sortBooks(books) {
-  const sorted = books.sort((b, a) => {
-    return a.bookcaseNum - b.bookcaseNum || a.columnNum - b.columnNum;
-  });
-  return sorted;
-}
+// function sortBooks(books) {
+//   const sorted = books.sort((b, a) => {
+//     return a.bookcaseNum - b.bookcaseNum || a.columnNum - b.columnNum;
+//   });
+//   return sorted;
+// }
 
 
 function get_bookcase_nums(books) {

@@ -1,6 +1,25 @@
 const trList = document.querySelectorAll("tbody#bookList tr");
 let previousClickedRow = null;
 
+const CHO = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ",
+  "ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+
+function getChosung(str) {
+let result = '';
+for (let i = 0; i < str.length; i++) {
+const code = str.charCodeAt(i);
+if (code >= 0xAC00 && code <= 0xD7A3) {
+const uniIndex = code - 0xAC00;
+const choIndex = Math.floor(uniIndex / (21 * 28));
+result += CHO[choIndex];
+} else {
+result += str[i]; // 한글이 아니면 그대로
+}
+}
+return result;
+}
+
+
 // 검색 필터링
 function applyFilters() {
   const bookList = document.querySelectorAll("#bookList > tr");
@@ -17,8 +36,9 @@ function applyFilters() {
     // const genreMatch = selectedGenre === "전체" || selectedGenre === bookGenre;
     const bookcaseMatch = selectedBookcase === "전체" || selectedBookcase === bookcaseNum;
     const keywordMatch = book.querySelector("td:nth-child(3)").textContent.toLowerCase().includes(searchKeyword);
+    const chosungMatch = getChosung(book.querySelector("td:nth-child(3)").textContent.toLowerCase()).includes(searchKeyword);
 
-    if (bookcaseMatch && keywordMatch) {
+    if (bookcaseMatch && keywordMatch || chosungMatch) {
       filteredBooks.push(book);
     } else {
       book.style.display = "none";
